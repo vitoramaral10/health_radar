@@ -1,0 +1,53 @@
+{
+  "name": "health_radar",
+  "version": "1.0.0",
+  "description": "HealthRadar is a family health tracking program that monitors vital health data, providing real-time insights and alerts for proactive care. Empower your family with personalized health management and early prevention.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "Family",
+    "Health",
+    "Health",
+    "Monitoring",
+    "Vital",
+    "Tracking",
+    "Preventive",
+    "Care",
+    "Real-time",
+    "Health",
+    "Insights",
+    "Personalized",
+    "Health",
+    "Management",
+    "Health",
+    "Alerts",
+    "Wellness",
+    "Monitoring",
+    "Family",
+    "Care",
+    "Health",
+    "Data",
+    "Tracking",
+    "Proactive",
+    "Health",
+    "Health",
+    "Technology",
+    "Health",
+    "Dashboard",
+    "Early",
+    "Detection",
+    "Health",
+    "Awareness"
+  ],
+  "author": "Vitor Amaral de Melo",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
