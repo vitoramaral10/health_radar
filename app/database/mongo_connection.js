@@ -2,22 +2,30 @@
 
 var mongoose = require('mongoose');
 
-var _default = function _default() {
-    var url = process.env.MONGO_URL;
-    
-    if (!url) {
-        throw new Error('MONGO_URL environment variable is not set');
-    }
+var connectToDatabase = function connectToDatabase() {
+    return new Promise((resolve, reject) => {
+        var url = process.env.MONGO_URL;
 
-    mongoose.connect(url, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
-    var db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'connection error:'));
-    db.once('open', function () {
-        console.log('Connected to MongoDB');
-    });
-    };
+        if (!url) {
+            return reject(new Error('MONGO_URL environment variable is not set'));
+        }
 
-exports.default = _default;
+        mongoose.connect(url);
+        var db = mongoose.connection;
+        db.on('error', (error) => {
+            console.error('connection error:', error);
+            reject(error);
+        });
+        db.once('open', function () {
+            console.log('Connected to MongoDB');
+            resolve();
+        });
+
+        db.on('disconnected', function () {
+            console.log('Mongoose default connection to DB : disconnected');
+        }
+        );
+    });
+};
+
+exports.connectToDatabase = connectToDatabase;

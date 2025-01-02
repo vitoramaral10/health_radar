@@ -1,0 +1,22 @@
+services:
+  web:
+    container_name: web
+    build: .
+    environment:
+      - MONGO_URL=mongodb://root:example@mongo:27017
+      - SECRET_KEY=gbyoyVyqLS5tvC4knko9ABl3mVo8MGR3Aaj7S7Irfts=
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./data:/data/db

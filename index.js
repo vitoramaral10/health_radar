@@ -5,8 +5,6 @@ require("dotenv").config();
 
 const app = express();
 
-console.log(process.env);
-
 // Configura o express para receber dados em JSON
 app.use(express.json());
 
@@ -14,7 +12,12 @@ app.use(express.json());
 app.use("/api/signup", signupRoutes);
 
 // Inicia o banco de dados
-mongo.default();
+mongo.connectToDatabase().then(() => {
+    console.log('Connected to MongoDB');
+}).catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
+    process.exit(1);
+});
 
 // Inicia o servidor
 app.listen(3000, () => {
